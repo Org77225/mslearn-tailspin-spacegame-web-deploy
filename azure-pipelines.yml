@@ -139,18 +139,18 @@ stages:
             #   package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
             # the following to use swap for blue-green testing
             # https://docs.microsoft.com/en-us/learn/modules/manage-release-cadence/4-implement-blue-green-deployment
-            - task: AzureWebApp@1
-            displayName: 'Azure App Service Deploy: website'
-            inputs:
-              azureSubscription: 'Resource Manager - Tailspin - Space Game'
-              deployToSlotOrASE: 'true'
-              resourceGroupName: 'tailspin-space-game-rg'
-              slotName: 'swap'
-              appName: '$(WebAppNameStaging)'
-              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
-            - task: AzureAppServiceManage@0
-            displayName: 'Swap deployment slots'
-            inputs:
+          - task: AzureWebApp@1
+          displayName: 'Azure App Service Deploy: website'
+          inputs:
+            azureSubscription: 'Resource Manager - Tailspin - Space Game'
+            deployToSlotOrASE: 'true'
+            resourceGroupName: 'tailspin-space-game-rg'
+            slotName: 'swap'
+            appName: '$(WebAppNameStaging)'
+            package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+          - task: AzureAppServiceManage@0
+          displayName: 'Swap deployment slots'
+          inputs:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
               resourceGroupName: 'tailspin-space-game-rg'
               webAppName: '$(WebAppNameStaging)'
